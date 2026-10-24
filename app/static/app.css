@@ -86,16 +86,7 @@ body {
   min-height: calc(100vh - 60px);
 }
 @media (max-width: 760px) {
-  .layout { grid-template-columns: 1fr; }
-  .sidebar {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    border-top: 1px solid var(--line);
-    border-right: 0;
-    height: auto;
-    max-height: 50vh;
-  }
-  .main { padding-bottom: 50vh; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* ---------------- Sidebar ---------------- */
@@ -186,6 +177,7 @@ body {
   padding: 24px 28px;
   max-width: 1400px;
   width: 100%;
+  min-width: 0;
   margin: 0 auto;
 }
 
@@ -681,3 +673,64 @@ select {
 }
 .scan-row__addr { color: var(--accent); font-weight: 500; }
 .scan-row__model { color: var(--text-dim); font-size: 11px; }
+
+/* ---------------- Mobile: compact top miner switcher ---------------- */
+@media (max-width: 760px) {
+  .sidebar {
+    position: static;
+    height: auto;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .sidebar__head { padding: 10px 14px; }
+  .miner-list {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 12px 12px;
+    gap: 8px;
+  }
+  .miner-card {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    padding: 8px 16px;
+    min-height: 44px;
+    border-radius: 999px;
+  }
+  .miner-card__name { flex: 0 1 auto; max-width: 160px; }
+  .miner-card__addr,
+  .miner-card__stats,
+  .sidebar__foot { display: none; }
+
+  .topbar { padding: 10px 14px; }
+  .main { padding: 14px 14px 24px; }
+
+  .miner-pane__head { flex-direction: column; align-items: stretch; gap: 10px; }
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+  .tab {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .btn { min-height: 44px; font-size: 13px; }
+  .btn--small { min-width: 44px; min-height: 44px; }
+
+  .card__label { font-size: 11px; }
+  label { font-size: 12px; }
+  .small { font-size: 13px; }
+  .event-table th { font-size: 11px; }
+}
