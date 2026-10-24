@@ -177,7 +177,7 @@ class Controller:
 
         try:
             summary = client.summary()
-            stats = client.stats()
+            stats = client.litestats()
             status["summary"] = parse_summary(summary)
             status["stats"] = parse_stats(stats)
             try:
